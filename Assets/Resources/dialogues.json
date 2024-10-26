@@ -1,0 +1,27 @@
+{
+    "scenes": [
+        {
+            "sceneId": 1,
+            "background": "background1",
+            "dialogues": [
+                {
+                    "speaker": "Alice",
+                    "character": "Woman_1",
+                    "place": 1,
+                    "texts": ["Привет! Как дела?", "Давно не виделись!", "Как поживаешь?"],
+                    "choices": []
+                },
+                {
+                    "speaker": "Johanna",
+                    "character": "Woman_2",
+                    "place": 2,
+                    "texts": ["Мне нужно поговорить с тобой.", "Это важно.", "Ты готова?"],
+                    "choices": [
+                        {"text": "Да", "nextSceneId": 2},
+                        {"text": "Нет", "nextSceneId": 1}
+                    ]
+                }
+            ]
+        }
+    ]
+}
