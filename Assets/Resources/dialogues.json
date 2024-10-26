@@ -1,27 +1,86 @@
 {
-    "scenes": [
+  "scenes": [
+    {
+      "sceneId": 1,
+      "background": "background1",
+      "dialogues": [
         {
-            "sceneId": 1,
-            "background": "background1",
-            "dialogues": [
-                {
-                    "speaker": "Alice",
-                    "character": "Woman_1",
-                    "place": 1,
-                    "texts": ["Привет! Как дела?", "Давно не виделись!", "Как поживаешь?"],
-                    "choices": []
-                },
-                {
-                    "speaker": "Johanna",
-                    "character": "Woman_2",
-                    "place": 2,
-                    "texts": ["Мне нужно поговорить с тобой.", "Это важно.", "Ты готова?"],
-                    "choices": [
-                        {"text": "Да", "nextSceneId": 2},
-                        {"text": "Нет", "nextSceneId": 1}
-                    ]
-                }
-            ]
+          "isNarration": true,
+          "texts": [
+            "Незнакомец, представившийся Меруэмом, протянул ей руку...",
+            "Она продолжила сидеть на месте, опасаясь даже пошевелиться.",
+            "Взглянув в его глаза, она почувствовала странное спокойствие."
+          ],
+          "choices": []
+        },
+        {
+          "speaker": "Miru",
+          "character": "Man_1",
+          "place": 1,
+          "texts": [
+            "— Или можешь сидеть здесь, и тогда тебя найдут.",
+            "Не советую выбирать второй вариант."
+          ],
+          "choices": []
+        },
+        {
+          "isNarration": true,
+          "texts": [
+            "От его слов по ее телу побежали мурашки."
+          ],
+          "choices": []
+        },
+        {
+          "speaker": "Alice",
+          "texts": [],
+          "choices": [
+            {
+              "text": "Довериться Меруэму.",
+              "nextSceneId": 2
+            },
+            {
+              "text": "Отказаться от помощи",
+              "nextSceneId": 3
+            }
+          ]
         }
-    ]
+      ]
+    },
+    {
+      "sceneId": 2,
+      "background": "background1",
+      "dialogues": [
+        {
+          "speaker": "Alice",
+          "character": "Woman_1",
+          "place": 1,
+          "texts": [ "Привет! Как дела?", "Давно не виделись!", "Как поживаешь?" ],
+          "choices": []
+        },
+        {
+          "speaker": "Johanna",
+          "character": "Woman_2",
+          "place": 2,
+          "texts": [ "Мне нужно поговорить с тобой.", "Это важно.", "Ты готова?" ],
+          "choices": []
+        },
+        {
+          "speaker": "Johanna",
+          "choices": [
+            {
+              "text": "Да",
+              "nextSceneId": 2
+            },
+            {
+              "text": "Нет",
+              "nextSceneId": 1
+            }
+          ],
+          "texts": []
+            
+        }
+      ]
+    }
+  ]
 }
+

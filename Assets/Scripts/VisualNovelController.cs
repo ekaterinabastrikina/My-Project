@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
+using static VisualNovelController;
 
 public class VisualNovelController : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class VisualNovelController : MonoBehaviour
         public string speaker;
         public string character;
         public int place;
+        public bool isNarration;
         public List<string> texts;  // Список текстов вместо одного текста
         public List<Choice> choices;
     }
@@ -54,6 +56,7 @@ public class VisualNovelController : MonoBehaviour
     void Start()
     {
         HideChoices();
+        HideCharacterAvatars();
         leftAvatar.gameObject.SetActive(false); // Скрыть аватар слева в начале
         rightAvatar.gameObject.SetActive(false); // Скрыть аватар справа в начале
         LoadDataFromFile("dialogues");
@@ -118,34 +121,82 @@ public class VisualNovelController : MonoBehaviour
 
     void ShowNextDialogueText()
     {
-        if (currentDialogueIndex < currentScene.dialogues.Count)
+        // Проверяем, есть ли еще диалоги в текущей сцене
+        if (currentDialogueIndex >= currentScene.dialogues.Count)
         {
-            Dialogue dialogue = currentScene.dialogues[currentDialogueIndex];
+            Debug.Log("Диалог завершён для этой сцены.");
+            return; // Завершить, если нет диалогов
+        }
 
-            // Устанавливаем спикера и текст диалога
-            speakerText.text = dialogue.speaker;
-            DisplayCharacter(dialogue.character, dialogue.place);
+        Dialogue dialogue = currentScene.dialogues[currentDialogueIndex];
 
-            // Если ещё есть текст в массиве `texts`, показываем его
+        // Проверяем, является ли диалог авторской речью
+        if (dialogue.isNarration)
+        {
+            // Устанавливаем текст диалога без спикера и аватара
+            speakerText.text = ""; // Очистить имя спикера
+            HideCharacterAvatars(); // Скрыть аватары
+
+            // Проверка на наличие текстов
             if (textCounter < dialogue.texts.Count)
             {
-                dialogueText.text = dialogue.texts[textCounter];
-                textCounter++;
+                dialogueText.text = dialogue.texts[textCounter]; // Устанавливаем текст из массива
+                textCounter++; // Переход к следующему тексту
             }
-            else
+            else // Если текстов больше нет
             {
-                // Если текст закончился, показываем выбор (если он есть) или переходим к следующему диалогу
-                textCounter = 0;
-                currentDialogueIndex++;
+                textCounter = 0; // Сброс счетчика
+                currentDialogueIndex++; // Переход к следующему диалогу
+                ShowNextDialogueText(); // Показать следующий диалог
+                return; // Выход из метода
+            }
+        }
+        else // Обработка диалога с персонажем
+        {
+            speakerText.text = string.IsNullOrEmpty(dialogue.speaker) ? "Неизвестный" : dialogue.speaker;
+            DisplayCharacter(dialogue.character, dialogue.place); // Устанавливаем аватар
 
+            // Проверка на наличие текстов
+            if (textCounter < dialogue.texts.Count)
+            {
+                dialogueText.text = dialogue.texts[textCounter]; // Устанавливаем текст из массива
+                textCounter++; // Переход к следующему тексту
+            }
+            else // Если текстов больше нет
+            {
+                textCounter = 0; // Сброс счетчика
+
+                // Проверка на наличие выбора, если текстов нет
                 if (dialogue.choices != null && dialogue.choices.Count > 0)
                 {
-                    ShowChoices(dialogue.choices);
+                    ShowChoices(dialogue.choices); // Отображаем выборы
+                    dialogueText.gameObject.SetActive(false); // Скрываем текст диалога
+                    isChoosing = true; // Включаем режим выбора
                 }
                 else
                 {
-                    ShowNextDialogueText(); // Переход к следующему диалогу
+                    // Если нет ни текстов, ни выборов, переходим к следующему диалогу
+                    currentDialogueIndex++;
+                    ShowNextDialogueText(); // Показать следующий диалог
+                    return; // Выход из метода
                 }
+            }
+        }
+
+        // Проверяем наличие выбора
+        if (currentDialogueIndex < currentScene.dialogues.Count)
+        {
+            Dialogue nextDialogue = currentScene.dialogues[currentDialogueIndex];
+
+            if (nextDialogue.choices != null && nextDialogue.choices.Count > 0)
+            {
+                ShowChoices(nextDialogue.choices);
+                dialogueText.gameObject.SetActive(false); // Скрываем текст диалога
+            }
+            else
+            {
+                dialogueText.gameObject.SetActive(true); // Показываем текст диалога
+                HideChoices(); // Скрываем кнопки выбора
             }
         }
         else
@@ -153,6 +204,8 @@ public class VisualNovelController : MonoBehaviour
             Debug.Log("Диалог завершён для этой сцены.");
         }
     }
+
+
 
     void DisplayCharacter(string characterName, int place)
     {
@@ -205,6 +258,12 @@ public class VisualNovelController : MonoBehaviour
         }
     }
 
+    void HideCharacterAvatars()
+    {
+        leftAvatar.gameObject.SetActive(false); // Скрыть левый аватар
+        rightAvatar.gameObject.SetActive(false); // Скрыть правый аватар
+    }
+
     void HideChoices()
     {
         dialogueText.gameObject.SetActive(true);
@@ -219,7 +278,3 @@ public class VisualNovelController : MonoBehaviour
         LoadScene(nextSceneId);
     }
 }
-
-
-
-
