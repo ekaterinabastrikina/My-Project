@@ -42,6 +42,7 @@ public class VisualNovelController : MonoBehaviour
     [SerializeField] private Image backgroundImage;
     public TextMeshProUGUI dialogueText;
     public TextMeshProUGUI speakerText;
+    public GameObject dialogueTextPanel;
     [SerializeField] private Button[] optionButtons;
     [SerializeField] private Image leftAvatar;
     [SerializeField] private Image rightAvatar;
@@ -192,10 +193,12 @@ public class VisualNovelController : MonoBehaviour
             {
                 ShowChoices(nextDialogue.choices);
                 dialogueText.gameObject.SetActive(false); // Скрываем текст диалога
-            }
+                dialogueTextPanel.gameObject.SetActive(false);
+}
             else
             {
                 dialogueText.gameObject.SetActive(true); // Показываем текст диалога
+                dialogueTextPanel.gameObject.SetActive(true);
                 HideChoices(); // Скрываем кнопки выбора
             }
         }

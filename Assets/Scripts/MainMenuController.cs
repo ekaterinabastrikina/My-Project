@@ -1,30 +1,31 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement; // Необходимо для загрузки сцен
 
 public class MainMenuController : MonoBehaviour
 {
     public void NewGame()
     {
-        // Загрузите начальную сцену вашей визуальной новеллы
-        SceneManager.LoadScene("Scene1");
+        // Код для начала новой игры, например, загрузка первой сцены
+        SceneManager.LoadScene("Scene1"); // Замените "GameScene" на имя вашей первой сцены
     }
 
     public void ContinueGame()
     {
-        // Логика для продолжения игры (например, загрузка сохранённого состояния)
-        Debug.Log("Продолжение игры");
+        // Код для продолжения игры (например, загрузка сохраненного уровня)
+        Debug.Log("Continue Game нажата");
     }
 
     public void OpenSettings()
     {
-        // Открыть меню настроек
-        Debug.Log("Открытие настроек");
+        // Открытие настроек
+        Debug.Log("Settings нажата");
     }
 
     public void QuitGame()
     {
         // Выход из игры
-        Application.Quit();
-        Debug.Log("Выход из игры");
+        Debug.Log("Quit нажата");
+        Application.Quit(); // Работает только в собранной версии игры, не в редакторе Unity
     }
 }
+

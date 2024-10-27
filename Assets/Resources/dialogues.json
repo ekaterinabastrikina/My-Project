@@ -2,31 +2,31 @@
   "scenes": [
     {
       "sceneId": 1,
-      "background": "background1",
+      "background": "background2",
       "dialogues": [
         {
           "isNarration": true,
           "texts": [
-            "Незнакомец, представившийся Меруэмом, протянул ей руку...",
-            "Она продолжила сидеть на месте, опасаясь даже пошевелиться.",
-            "Взглянув в его глаза, она почувствовала странное спокойствие."
+            "The stranger, who introduced himself as Meruem, extended his hand to her...",
+            "But she continued to sit in place, afraid to even move.",
+            "Looking into his eyes, she felt a strange calm."
           ],
           "choices": []
         },
         {
-          "speaker": "Miru",
+          "speaker": "Meruem",
           "character": "Man_1",
           "place": 1,
           "texts": [
-            "— Или можешь сидеть здесь, и тогда тебя найдут.",
-            "Не советую выбирать второй вариант."
+            "Or you can sit here, and then they will definitely find you.",
+            "I don't advise you to choose the second option."
           ],
           "choices": []
         },
         {
           "isNarration": true,
           "texts": [
-            "От его слов по ее телу побежали мурашки."
+            "His words sent shivers down her spine."
           ],
           "choices": []
         },
@@ -35,11 +35,11 @@
           "texts": [],
           "choices": [
             {
-              "text": "Довериться Меруэму.",
+              "text": "Trust Meruem",
               "nextSceneId": 2
             },
             {
-              "text": "Отказаться от помощи",
+              "text": "Refuse help",
               "nextSceneId": 3
             }
           ]
@@ -54,25 +54,25 @@
           "speaker": "Alice",
           "character": "Woman_1",
           "place": 1,
-          "texts": [ "Привет! Как дела?", "Давно не виделись!", "Как поживаешь?" ],
+          "texts": [ "Hi! How are you?", "Long time no see!", "How are you?" ],
           "choices": []
         },
         {
           "speaker": "Johanna",
           "character": "Woman_2",
           "place": 2,
-          "texts": [ "Мне нужно поговорить с тобой.", "Это важно.", "Ты готова?" ],
+          "texts": [ "I need to talk to you.", "It's important.", "Are you ready?" ],
           "choices": []
         },
         {
           "speaker": "Johanna",
           "choices": [
             {
-              "text": "Да",
+              "text": "Yes",
               "nextSceneId": 2
             },
             {
-              "text": "Нет",
+              "text": "No",
               "nextSceneId": 1
             }
           ],
