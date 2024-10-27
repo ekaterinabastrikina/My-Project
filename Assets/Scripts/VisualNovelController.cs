@@ -40,8 +40,8 @@ public class VisualNovelController : MonoBehaviour
     }
 
     [SerializeField] private Image backgroundImage;
-    [SerializeField] public TextMeshProUGUI dialogueText;
-    [SerializeField] public TextMeshProUGUI speakerText;
+    public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI speakerText;
     [SerializeField] private Button[] optionButtons;
     [SerializeField] private Image leftAvatar;
     [SerializeField] private Image rightAvatar;
@@ -134,7 +134,7 @@ public class VisualNovelController : MonoBehaviour
         if (dialogue.isNarration)
         {
             // Устанавливаем текст диалога без спикера и аватара
-            speakerText.text = ""; // Очистить имя спикера
+            speakerText.text = "..."; // Очистить имя спикера
             HideCharacterAvatars(); // Скрыть аватары
 
             // Проверка на наличие текстов
