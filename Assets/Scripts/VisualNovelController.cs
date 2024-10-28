@@ -47,6 +47,12 @@ public class VisualNovelController : MonoBehaviour
     [SerializeField] private Image leftAvatar;
     [SerializeField] private Image rightAvatar;
 
+    [SerializeField] private GameObject speakerTextPanelLeft;
+    [SerializeField] private GameObject speakerTextPanelCenter;
+    [SerializeField] private GameObject speakerTextPanelRight;
+
+
+
     private VisualNovelData visualNovelData;
     private SceneData currentScene;
     private int currentDialogueIndex = 0;
@@ -120,6 +126,38 @@ public class VisualNovelController : MonoBehaviour
         }
     }
 
+
+
+    void AdjustSpeakerTextPanelAlignment(Dialogue dialogue)
+    {
+        // Отключаем все панели перед выбором
+        speakerTextPanelCenter.SetActive(false);
+        speakerTextPanelLeft.SetActive(false);
+        speakerTextPanelRight.SetActive(false);
+
+        if (dialogue.isNarration)
+        {
+            // Включаем только центральную панель
+            speakerTextPanelCenter.SetActive(true);
+            speakerText = speakerTextPanelCenter.GetComponentInChildren<TextMeshProUGUI>();
+        }
+        else if (dialogue.place == 1)
+        {
+            // Включаем только левую панель
+            speakerTextPanelLeft.SetActive(true);
+            speakerText = speakerTextPanelLeft.GetComponentInChildren<TextMeshProUGUI>();
+        }
+        else if (dialogue.place == 2)
+        {
+            // Включаем только правую панель
+            speakerTextPanelRight.SetActive(true);
+            speakerText = speakerTextPanelRight.GetComponentInChildren<TextMeshProUGUI>();
+        }
+    }
+
+
+
+
     void ShowNextDialogueText()
     {
         // Проверяем, есть ли еще диалоги в текущей сцене
@@ -130,6 +168,12 @@ public class VisualNovelController : MonoBehaviour
         }
 
         Dialogue dialogue = currentScene.dialogues[currentDialogueIndex];
+
+        AdjustSpeakerTextPanelAlignment(dialogue); // Активируем нужную панель перед показом текста
+       
+        speakerText.text = dialogue.speaker;
+
+        Debug.Log("Отображаем текст: " + dialogueText.text);
 
         // Проверяем, является ли диалог авторской речью
         if (dialogue.isNarration)

@@ -2,7 +2,7 @@
   "scenes": [
     {
       "sceneId": 1,
-      "background": "background2",
+      "background": "background3",
       "dialogues": [
         {
           "isNarration": true,
@@ -32,6 +32,8 @@
         },
         {
           "speaker": "Alice",
+          "character": "Woman_1",
+          "place": 1,
           "texts": [],
           "choices": [
             {
@@ -65,7 +67,9 @@
           "choices": []
         },
         {
-          "speaker": "Johanna",
+          "speaker": "Alice",
+          "character": "Woman_1",
+          "place": 1,
           "choices": [
             {
               "text": "Yes",
@@ -77,10 +81,10 @@
             }
           ],
           "texts": []
-            
         }
       ]
     }
   ]
 }
+
 
