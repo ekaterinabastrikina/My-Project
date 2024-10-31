@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using TMPro;
-using static VisualNovelController;
+
 
 public class VisualNovelController : MonoBehaviour
 {
@@ -21,6 +21,7 @@ public class VisualNovelController : MonoBehaviour
         public string character;
         public int place;
         public bool isNarration;
+        // public string expression;
         public List<string> texts;  // Список текстов вместо одного текста
         public List<Choice> choices;
     }
@@ -53,10 +54,12 @@ public class VisualNovelController : MonoBehaviour
 
 
 
+
+
     private VisualNovelData visualNovelData;
     private SceneData currentScene;
     private int currentDialogueIndex = 0;
-    private int textCounter = 0; // Счётчик для текстов в массиве `texts`
+    private int textCounter = 0; // Счётчик для текстов в массиве texts
 
     private bool isChoosing = false;
 
@@ -64,8 +67,8 @@ public class VisualNovelController : MonoBehaviour
     {
         HideChoices();
         HideCharacterAvatars();
-        leftAvatar.gameObject.SetActive(false); // Скрыть аватар слева в начале
-        rightAvatar.gameObject.SetActive(false); // Скрыть аватар справа в начале
+        leftAvatar.gameObject.SetActive(false);
+        rightAvatar.gameObject.SetActive(false);
         LoadDataFromFile("dialogues");
         LoadScene(1);
     }
@@ -156,6 +159,7 @@ public class VisualNovelController : MonoBehaviour
     }
 
 
+    //[SerializeField] private CharacterExpressionController сharacterExpressionController;
 
 
     void ShowNextDialogueText()
@@ -170,65 +174,75 @@ public class VisualNovelController : MonoBehaviour
         Dialogue dialogue = currentScene.dialogues[currentDialogueIndex];
 
         AdjustSpeakerTextPanelAlignment(dialogue); // Активируем нужную панель перед показом текста
-       
+
+        // Устанавливаем имя спикера
         speakerText.text = dialogue.speaker;
 
         Debug.Log("Отображаем текст: " + dialogueText.text);
 
-        // Проверяем, является ли диалог авторской речью
+        // Проверяем, является ли диалог авторской речью (рассказчиком)
         if (dialogue.isNarration)
         {
-            // Устанавливаем текст диалога без спикера и аватара
-            speakerText.text = "..."; // Очистить имя спикера
-            HideCharacterAvatars(); // Скрыть аватары
+
+            speakerText.text = "...";
+            HideCharacterAvatars();
 
             // Проверка на наличие текстов
             if (textCounter < dialogue.texts.Count)
             {
-                dialogueText.text = dialogue.texts[textCounter]; // Устанавливаем текст из массива
-                textCounter++; // Переход к следующему тексту
+                dialogueText.text = dialogue.texts[textCounter];
+                textCounter++;
             }
-            else // Если текстов больше нет
+            else
             {
-                textCounter = 0; // Сброс счетчика
-                currentDialogueIndex++; // Переход к следующему диалогу
-                ShowNextDialogueText(); // Показать следующий диалог
+                textCounter = 0;
+                currentDialogueIndex++;
+                ShowNextDialogueText();
                 return; // Выход из метода
             }
         }
-        else // Обработка диалога с персонажем
+        else
         {
+            // Устанавливаем имя спикера, если оно есть, иначе "Неизвестный"
             speakerText.text = string.IsNullOrEmpty(dialogue.speaker) ? "Неизвестный" : dialogue.speaker;
-            DisplayCharacter(dialogue.character, dialogue.place); // Устанавливаем аватар
+
+
+            DisplayCharacter(dialogue.character, dialogue.place);
+
+            // Проверяем наличие эмоции в JSON и изменяем эмоцию, если она указана
+            /*if (!string.IsNullOrEmpty(dialogue.expression))
+            {
+                сharacterExpressionController.SetExpression(dialogue.expression);
+            }*/
 
             // Проверка на наличие текстов
             if (textCounter < dialogue.texts.Count)
             {
-                dialogueText.text = dialogue.texts[textCounter]; // Устанавливаем текст из массива
-                textCounter++; // Переход к следующему тексту
+                dialogueText.text = dialogue.texts[textCounter];
+                textCounter++;
             }
-            else // Если текстов больше нет
+            else
             {
-                textCounter = 0; // Сброс счетчика
+                textCounter = 0;
 
-                // Проверка на наличие выбора, если текстов нет
+
                 if (dialogue.choices != null && dialogue.choices.Count > 0)
                 {
-                    ShowChoices(dialogue.choices); // Отображаем выборы
-                    dialogueText.gameObject.SetActive(false); // Скрываем текст диалога
-                    isChoosing = true; // Включаем режим выбора
+                    ShowChoices(dialogue.choices);
+                    dialogueText.gameObject.SetActive(false);
+                    isChoosing = true;
                 }
                 else
                 {
-                    // Если нет ни текстов, ни выборов, переходим к следующему диалогу
+
                     currentDialogueIndex++;
-                    ShowNextDialogueText(); // Показать следующий диалог
-                    return; // Выход из метода
+                    ShowNextDialogueText();
+                    return;
                 }
             }
         }
 
-        // Проверяем наличие выбора
+        // Проверяем наличие выбора в следующем диалоге
         if (currentDialogueIndex < currentScene.dialogues.Count)
         {
             Dialogue nextDialogue = currentScene.dialogues[currentDialogueIndex];
@@ -238,7 +252,7 @@ public class VisualNovelController : MonoBehaviour
                 ShowChoices(nextDialogue.choices);
                 dialogueText.gameObject.SetActive(false); // Скрываем текст диалога
                 dialogueTextPanel.gameObject.SetActive(false);
-}
+            }
             else
             {
                 dialogueText.gameObject.SetActive(true); // Показываем текст диалога

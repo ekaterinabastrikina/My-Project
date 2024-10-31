@@ -2,7 +2,7 @@
   "scenes": [
     {
       "sceneId": 1,
-      "background": "background3",
+      "background": "background5",
       "dialogues": [
         {
           "isNarration": true,
@@ -50,7 +50,7 @@
     },
     {
       "sceneId": 2,
-      "background": "background1",
+      "background": "background6",
       "dialogues": [
         {
           "speaker": "Alice",
