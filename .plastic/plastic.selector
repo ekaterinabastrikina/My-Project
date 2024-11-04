@@ -1,0 +1,4 @@
+repository "Game@ebastrikina@cloud"
+  path "/"
+    br "/main"
+    co "/main"
