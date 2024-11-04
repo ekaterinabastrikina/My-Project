@@ -894,7 +894,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 675215165}
-  - component: {fileID: 675215167}
   - component: {fileID: 675215166}
   m_Layer: 0
   m_Name: DialogueManager
@@ -941,39 +940,6 @@ MonoBehaviour:
   speakerTextPanelLeft: {fileID: 866966297}
   speakerTextPanelCenter: {fileID: 419364722}
   speakerTextPanelRight: {fileID: 1565075439}
---- !u!114 &675215167
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 675215164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983be3f9c4c946941b6e326be8d75320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundImage: {fileID: 669710639}
-  dialogueText: {fileID: 693499077}
-  speakerText: {fileID: 614503401}
-  dialogueTextPanel: {fileID: 350238099}
-  optionButtons:
-  - {fileID: 1739521754}
-  - {fileID: 103069935}
-  leftAvatar: {fileID: 1658729284}
-  rightAvatar: {fileID: 2005159789}
-  speakerTextPanelLeft: {fileID: 866966297}
-  speakerTextPanelCenter: {fileID: 419364722}
-  speakerTextPanelRight: {fileID: 1565075439}
-  visualNovelData:
-    scenes: []
-  currentScene:
-    sceneId: 0
-    background: 
-    dialogues: []
-  currentDialogueIndex: 0
-  textCounter: 0
-  isChoosing: 0
 --- !u!1 &693499076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1433,7 +1399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 925010743}
-  - component: {fileID: 925010744}
   - component: {fileID: 925010745}
   m_Layer: 0
   m_Name: SceneController
@@ -1457,39 +1422,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2037103632}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &925010744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925010742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983be3f9c4c946941b6e326be8d75320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundImage: {fileID: 669710639}
-  dialogueText: {fileID: 693499077}
-  speakerText: {fileID: 614503401}
-  dialogueTextPanel: {fileID: 350238099}
-  optionButtons:
-  - {fileID: 1739521754}
-  - {fileID: 103069935}
-  leftAvatar: {fileID: 1658729284}
-  rightAvatar: {fileID: 2005159789}
-  speakerTextPanelLeft: {fileID: 866966297}
-  speakerTextPanelCenter: {fileID: 419364722}
-  speakerTextPanelRight: {fileID: 1565075439}
-  visualNovelData:
-    scenes: []
-  currentScene:
-    sceneId: 0
-    background: 
-    dialogues: []
-  currentDialogueIndex: 0
-  textCounter: 0
-  isChoosing: 0
 --- !u!114 &925010745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2254,7 +2186,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1907238384}
-  - component: {fileID: 1907238386}
   - component: {fileID: 1907238385}
   m_Layer: 0
   m_Name: DataLoader
@@ -2290,39 +2221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5787a6e817e1dd4e9192919b4a53861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1907238386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907238383}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 983be3f9c4c946941b6e326be8d75320, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  backgroundImage: {fileID: 669710639}
-  dialogueText: {fileID: 693499077}
-  speakerText: {fileID: 614503401}
-  dialogueTextPanel: {fileID: 350238099}
-  optionButtons:
-  - {fileID: 1739521754}
-  - {fileID: 103069935}
-  leftAvatar: {fileID: 1658729284}
-  rightAvatar: {fileID: 2005159789}
-  speakerTextPanelLeft: {fileID: 866966297}
-  speakerTextPanelCenter: {fileID: 419364722}
-  speakerTextPanelRight: {fileID: 1565075439}
-  visualNovelData:
-    scenes: []
-  currentScene:
-    sceneId: 0
-    background: 
-    dialogues: []
-  currentDialogueIndex: 0
-  textCounter: 0
-  isChoosing: 0
 --- !u!1 &2005159787
 GameObject:
   m_ObjectHideFlags: 0
