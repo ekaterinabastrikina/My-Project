@@ -173,7 +173,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      SpeakerTextPanel_0: 8348477560331568591
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
